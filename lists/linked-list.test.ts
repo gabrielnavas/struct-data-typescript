@@ -21,4 +21,14 @@ describe('Linked List', () => {
       expect(sut.size()).toEqual(3)
     })
   })
+
+  test('getElementAt()', () => {
+    const sut = new LinkedList<Number>()
+    const elements = [2,4,6,8]
+    elements.forEach(e => sut.push(e))
+
+    const element = sut.getElementAt(1)
+
+    expect(element?.value).toEqual(4)
+  });
 })

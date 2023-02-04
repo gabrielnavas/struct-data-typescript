@@ -49,8 +49,15 @@ export class LinkedList <T> {
     throw new Error('not implemented')
   }
 
-  getElementAt = () => {
-    throw new Error('not implemented')
+  getElementAt = (position: number): No<T> | null => {
+    if(position < 0 || position >= this.count) {
+      return null
+    }
+    let node = this.head
+    for(let i=0; i < position && node !== null; i++) {
+      node = node.next
+    }
+    return node
   }
 
   remove = (element: No<T>) => {
