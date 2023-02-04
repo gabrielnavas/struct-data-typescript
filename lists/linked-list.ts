@@ -4,7 +4,7 @@ class No<T> {
     return this._value
   }
 
-  get next() { 
+  get next(): No<T> | null { 
     return this._next
   }
 
@@ -61,8 +61,28 @@ export class LinkedList <T> {
     throw new Error('not implemented')
   }
 
-  removeAt = (position: Number) => {
-    throw new Error('not implemented')
+  removeAt = (position: Number): T | null => {
+    if(position < 0 || position >= this.count) {
+      return null
+    }
+    if(this.count === 0) {
+      return null
+    }
+    if(position === 0) {
+      this.head = (this.head?.next as No<T>)
+      this.count--
+      return this.head?.value 
+    } else {
+      let current: No<T> = this.head as No<T>
+      let previous: No<T> = current
+      for (let i = 1; i < position; i++) {
+        previous = current
+        current = (current?.next as No<T>)
+      }
+      previous.next = current.next
+      this.count--
+      return current.value
+    }
   }
 
   isEmpty = () => {
